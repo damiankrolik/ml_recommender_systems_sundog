@@ -4,7 +4,10 @@
 
 `git clone git@github.com:user-gut/ml_recommender_systems_sundog.git`
 
-# ml_recommender_systems_sundog
+'''git config user.email "damian.krolik+user-gut@gmail.com"
+git config user.name "damian.krolik"'''
+
+## windows trying to use conda
 
 firtst run - in cmd.exe or code terminal:
 activate conda enviroment:
