@@ -29,7 +29,7 @@ evalData = EvaluationData(data, rankings)
 # Train on leave-One-Out train set
 trainSet = evalData.GetLOOCVTrainSet()
 sim_options = {'name': 'cosine',
-               'user_based': True
+               'user_based': False
                }
 
 model = KNNBasic(sim_options=sim_options)
@@ -49,8 +49,17 @@ for uiid in range(trainSet.n_users):
     for innerID, score in enumerate(similarityRow):
         if (innerID != uiid):
             similarUsers.append( (innerID, score) )
+    similarItems = []
+    for innerID, score in enumerate(similarityRow):
+        if (innerID != uiid):
+            similarItems.append( (innerID, score) )
     
-    kNeighbors = heapq.nlargest(k, similarUsers, key=lambda t: t[1])
+    # kNeighbors = heapq.nlargest(k, similarItems, key=lambda t: t[1])
+    testUserRatings = trainSet.ur[testUserInnerID]
+    kNeighbors = []
+    for rating in testUserRatings:
+        if rating[1] > 4.0:
+            kNeighbors.append(rating)
     
     # Get the stuff they rated, and add up ratings for each item, weighted by user similarity
     candidates = defaultdict(float)

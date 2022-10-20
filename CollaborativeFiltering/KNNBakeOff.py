@@ -31,11 +31,15 @@ random.seed(0)
 evaluator = Evaluator(evaluationData, rankings)
 
 # User-based KNN
-UserKNN = KNNBasic(sim_options = {'name': 'cosine', 'user_based': True})
+# UserKNN = KNNBasic(sim_options = {'name': 'cosine', 'user_based': True})
+# UserKNN = KNNBasic(sim_options = {'name': 'msd', 'user_based': True})
+UserKNN = KNNBasic(sim_options = {'name': 'pearson', 'user_based': True})
 evaluator.AddAlgorithm(UserKNN, "User KNN")
 
 # Item-based KNN
-ItemKNN = KNNBasic(sim_options = {'name': 'cosine', 'user_based': False})
+# ItemKNN = KNNBasic(sim_options = {'name': 'cosine', 'user_based': False})
+# ItemKNN = KNNBasic(sim_options = {'name': 'msd', 'user_based': False})
+ItemKNN = KNNBasic(sim_options = {'name': 'pearson', 'user_based': False})
 evaluator.AddAlgorithm(ItemKNN, "Item KNN")
 
 # Just make random recommendations
@@ -43,6 +47,6 @@ Random = NormalPredictor()
 evaluator.AddAlgorithm(Random, "Random")
 
 # Fight!
-evaluator.Evaluate(False)
+evaluator.Evaluate(True)
 
 evaluator.SampleTopNRecs(ml)
