@@ -68,11 +68,20 @@ class Evaluator:
             
             recommendations = []
             
+            # print ("\nWe recommend:")
+            # for userID, movieID, actualRating, estimatedRating, _ in predictions:
+            #     intMovieID = int(movieID)
+            #     recommendations.append((intMovieID, estimatedRating))
+            
+            # recommendations.sort(key=lambda x: x[1], reverse=True)
             print ("\nWe recommend:")
             for userID, movieID, actualRating, estimatedRating, _ in predictions:
                 intMovieID = int(movieID)
-                recommendations.append((intMovieID, estimatedRating))
-            
+                recommendations.append((intMovieID, estimatedRating, ml.getPopularityRanks()[intMovieID]))
+
+            # sort by popularity which is x[2] in our touple    
+            recommendations.sort(key=lambda x: x[2])
+            # sort by estimate ratings - which is element x[1]
             recommendations.sort(key=lambda x: x[1], reverse=True)
             
             for ratings in recommendations[:10]:
