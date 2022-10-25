@@ -43,3 +43,9 @@ wsl vscode ask for ipykernal install while trying to run in ipynb - jupyter note
 
 `pip install ipykernel`
 
+
+`pip install tensorflow`
+`pip install matplotlib`
+
+`pip install pandas`
+`pip install scikit-learn`
